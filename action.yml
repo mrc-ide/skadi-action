@@ -22,7 +22,7 @@ runs:
     - name: Run dependencies
       shell: bash
       run: |
-        ./scripts/run-deps.sh
+        ./scripts/run-deps-prod.sh
 
     - name: Install npm packages
       shell: bash
