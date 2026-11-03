@@ -22,7 +22,7 @@ runs:
     - name: Run dependencies
       shell: bash
       run: |
-        ./skadi/scripts/run-deps.sh
+        ./scripts/run-deps.sh
 
     - name: Install npm packages
       shell: bash
