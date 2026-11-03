@@ -32,7 +32,7 @@ runs:
     - name: Build static assets
       shell: bash
       run: |
-        tsx ./skadi/src/builder/builder.ts ./example
+        npx tsx ./src/builder/builder.ts ./example
 
     - name: Build app
       shell: bash
