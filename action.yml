@@ -1,0 +1,52 @@
+name: Make skadi site
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout skadi
+      uses: actions/checkout@v7
+      with:
+        ref: comparison-plot
+        repository: mrc-ide/skadi
+
+    - name: Remove example folder in Skadi
+      shell: bash
+      run: |
+        rm -rf ./example
+
+    - name: Checkout config
+      uses: actions/checkout@v7
+      with:
+        path: ./example
+
+    - name: Run dependencies
+      shell: bash
+      run: |
+        ./skadi/scripts/run-deps.sh
+
+    - name: Install npm packages
+      shell: bash
+      run: |
+        npm ci
+
+    - name: Build static assets
+      shell: bash
+      run: |
+        tsx ./skadi/src/builder/builder.ts ./example
+
+    - name: Build app
+      shell: bash
+      run: |
+        npm run build
+
+    - name: Post build
+      shell: bash
+      run: |
+        npm run post-build
+
+    - name: Deploy to GitHub pages 🚀
+      uses: JamesIves/github-pages-deploy-action@v4.4.1
+      with:
+        clean: false
+        branch: gh-pages
+        folder: dist
