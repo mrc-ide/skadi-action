@@ -6,7 +6,7 @@ runs:
     - name: Checkout skadi
       uses: actions/checkout@v7
       with:
-        ref: comparison-plot
+        ref: new-skadi-chart-interface
         repository: mrc-ide/skadi
 
     - name: Remove example folder in Skadi
